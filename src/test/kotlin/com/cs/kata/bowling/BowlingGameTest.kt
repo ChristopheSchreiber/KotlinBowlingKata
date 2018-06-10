@@ -71,7 +71,7 @@ class BowlingGameTest {
     @Test
     fun given_strike_score_should_count_strike_bonus() {
         //given
-        bowlingGame.roll(10)
+        strike()
         bowlingGame.roll(8)
         bowlingGame.roll(4)
         //when
@@ -80,5 +80,19 @@ class BowlingGameTest {
         assertEquals(34, score)
     }
 
-//    @Test
+
+    @Test
+    fun given_only_strikes_should_score_300() {
+        //given
+        for (i in 1..12)
+            strike()
+        //when
+        val score = bowlingGame.score()
+        //then
+        assertEquals(300, score)
+    }
+
+    private fun strike() {
+        bowlingGame.roll(10)
+    }
 }
